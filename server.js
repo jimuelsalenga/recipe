@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const connectDB = require('./config/db');
@@ -9,7 +10,7 @@ const recipeRoutes = require('./routes/recipeRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Load Swagger document
-const swaggerDocs = YAML.load('./docs/swagger.yaml'); 
+const swaggerDocs = YAML.load(path.resolve(__dirname, 'docs', 'swagger.yaml')); 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
