@@ -29,6 +29,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // 3. Error Handler (MUST be last middleware)
 app.use(errorHandler);
 
+//this is a comment
 // Start Server & Database Connection
 connectDB().then(() => {
   app.listen(PORT, () =>
