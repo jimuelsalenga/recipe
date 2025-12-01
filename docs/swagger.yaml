@@ -1,67 +1,111 @@
-openapi: 3.0.0
-info:
-  title: Recipe Sharing API
-  version: 1.0.0
-  description: API documentation for the Final Project Recipe Sharing App.
-servers:
-  - url: /api/v1
-    description: Base API URL
-
-paths:
-  /recipes:
-    get:
-      tags:
-        - Recipes
-      summary: Retrieve all recipes
-      responses:
-        '200':
-          description: A list of recipes.
-    post:
-      tags:
-        - Recipes
-      summary: Create a new recipe
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                title:
-                  type: string
-                  example: Classic Spaghetti
-                ingredients:
-                  type: array
-                  items:
-                    type: string
-                  example: ["Pasta", "Tomato Sauce", "Meat"]
-                steps:
-                  type: array
-                  items:
-                    type: string
-                    example: ["Boil water", "Mix sauce"]
-                user:
-                  type: string
-                  example: 60d0fe4f1a2e76313b1f501e
-      responses:
-        '201':
-          description: Recipe successfully created.
+# Append this entire section to your existing swagger.yaml
 
   /recipes/{id}:
-    get:
+    # ... (Your existing GET /recipes/{id} definition ends here)
+    
+    put:
       tags:
         - Recipes
-      summary: Get recipe by ID
+      summary: Update an existing recipe by ID
       parameters:
         - name: id
           in: path
           required: true
           schema:
             type: string
+            example: 60d0fe4f1a2e76313b1f501e
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              # Reuse the same schema as POST for a full update
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Classic Spaghetti (Updated)
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                steps:
+                  type: array
+                  items:
+                    type: string
+                category:
+                  type: string
+                  example: Dinner
+                user:
+                  type: string
+                  example: 60d0fe4f1a2e76313b1f501e
       responses:
         '200':
-          description: Successful retrieval
+          description: Recipe successfully updated.
         '404':
-          description: Recipe not found
+          description: Recipe not found.
 
-# ... (You need to add paths for PUT, DELETE, /search, /popular, and /user)
+    delete:
+      tags:
+        - Recipes
+      summary: Delete a recipe by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 60d0fe4f1a2e76313b1f501e
+      responses:
+        '200':
+          description: Recipe successfully deleted.
+        '404':
+          description: Recipe not found.
+
+  /recipes/search:
+    get:
+      tags:
+        - Recipes
+      summary: Search recipes by keyword
+      description: Searches across title, ingredients, and category.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: Search keyword (e.g., 'chicken' or 'vegan').
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of matching recipes.
+        '400':
+          description: Query parameter 'q' is required.
+
+  /recipes/popular:
+    get:
+      tags:
+        - Recipes
+      summary: Retrieve the most popular recipes
+      description: Returns a limited list (e.g., top 10) of recipes sorted by views or likes.
+      responses:
+        '200':
+          description: A list of popular recipes.
+
+  /recipes/user/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Retrieve all recipes created by a specific user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The MongoDB ID of the user.
+          schema:
+            type: string
+            example: 60d0fe4f1a2e76313b1f501e
+      responses:
+        '200':
+          description: A list of recipes posted by the user.
+        '404':
+          description: User not found or no recipes found for the user.
