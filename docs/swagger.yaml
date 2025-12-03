@@ -4,10 +4,11 @@ info:
   version: 1.0.0
   description: API documentation for the Final Project Recipe Sharing App, covering CRUD, search, and filtering features.
 servers:
+  - url: /api/v1
     description: Base API URL
 
 paths:
-  /api/v1/recipes:
+  /recipes:
     get:
       tags:
         - Recipes
@@ -58,7 +59,7 @@ paths:
         '400':
           description: Invalid input (Missing required fields or bad data type).
 
-  /api/v1/recipes/{id}:
+  /recipes/{id}:
     get:
       tags:
         - Recipes
@@ -137,7 +138,7 @@ paths:
         '404':
           description: Recipe not found.
 
-  /api/v1/recipes/search:
+  /recipes/search:
     get:
       tags:
         - Recipes
@@ -156,7 +157,7 @@ paths:
         '400':
           description: Query parameter 'q' is required.
 
-  /api/v1/recipes/popular:
+  /recipes/popular:
     get:
       tags:
         - Recipes
@@ -166,7 +167,7 @@ paths:
         '200':
           description: A list of popular recipes.
 
-  /api/v1/recipes/user/{userId}:
+  /recipes/user/{userId}:
     get:
       tags:
         - Users
