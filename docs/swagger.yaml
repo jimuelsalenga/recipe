@@ -8,7 +8,7 @@ servers:
     description: Base API URL
 
 paths:
-  api/v1/recipes:
+  /api/v1/recipes:
     get:
       tags:
         - Recipes
@@ -59,7 +59,7 @@ paths:
         '400':
           description: Invalid input (Missing required fields or bad data type).
 
-  /recipes/{id}:
+  /api/v1/recipes/{id}:
     get:
       tags:
         - Recipes
@@ -138,7 +138,7 @@ paths:
         '404':
           description: Recipe not found.
 
-  /recipes/search:
+  /api/v1/recipes/search:
     get:
       tags:
         - Recipes
@@ -157,7 +157,7 @@ paths:
         '400':
           description: Query parameter 'q' is required.
 
-  /recipes/popular:
+  /api/v1/recipes/popular:
     get:
       tags:
         - Recipes
@@ -167,7 +167,7 @@ paths:
         '200':
           description: A list of popular recipes.
 
-  /recipes/user/{userId}:
+  /api/v1/recipes/user/{userId}:
     get:
       tags:
         - Users
