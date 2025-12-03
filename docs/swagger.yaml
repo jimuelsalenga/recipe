@@ -184,8 +184,4 @@ paths:
         '200':
           description: A list of recipes posted by the user.
         '404':
-<<<<<<< HEAD
           description: User not found or no recipes found for the user.
-=======
-          description: User not found or no recipes found for the user.
->>>>>>> 8e93356e86798b5a5efb557f837c19dd9b152675
