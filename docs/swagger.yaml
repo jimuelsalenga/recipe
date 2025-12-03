@@ -4,7 +4,6 @@ info:
   version: 1.0.0
   description: API documentation for the Final Project Recipe Sharing App, covering CRUD, search, and filtering features.
 servers:
-  - url: /api/v1
     description: Base API URL
 
 paths:
