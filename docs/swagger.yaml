@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: API documentation for the Final Project Recipe Sharing App, covering CRUD, search, and filtering features.
 servers:
-  - url: /api/v1
+  - url: https://recipes-deployment.vercel.app/api/v1/recipes
     description: Base API URL
 
 paths:
@@ -185,3 +185,4 @@ paths:
           description: A list of recipes posted by the user.
         '404':
           description: User not found or no recipes found for the user.
+          
