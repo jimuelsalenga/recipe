@@ -8,7 +8,7 @@ servers:
     description: Base API URL
 
 paths:
-  /api/v1/recipes:
+  /recipes:
     get:
       tags:
         - Recipes
